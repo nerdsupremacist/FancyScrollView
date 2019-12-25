@@ -64,10 +64,11 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController,
                                 context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
 
-        guard uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate !== context.coordinator else { return }
+        uiViewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
+        guard !(uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate is Coordinator) else { return }
         context.coordinator.navigationController = uiViewController.navigationController
         context.coordinator.originalDelegate = uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate
-        uiViewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate = context.coordinator
     }
 
