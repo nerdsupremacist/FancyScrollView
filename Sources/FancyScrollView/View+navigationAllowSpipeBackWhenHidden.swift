@@ -30,8 +30,7 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
 
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
             if let navigationController = navigationController,
-                navigationController.isNavigationBarHidden,
-                navigationController.viewControllers.count > 1 {
+                navigationController.isNavigationBarHidden {
 
                 return true
             } else if let result = originalDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: touch) {
