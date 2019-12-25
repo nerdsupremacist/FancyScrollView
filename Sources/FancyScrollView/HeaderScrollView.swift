@@ -68,8 +68,7 @@ struct HeaderScrollView: View {
             .edgesIgnoringSafeArea(.top)
         }
         .navigationBarTitle(Text(""), displayMode: .inline)
-        .navigationBarHidden(true)
-        .hackNavigationToAllowSpipeBackWhenHidden()
+        .hideNavigationBarWithoutLosingSwipeBack(true)
     }
 }
 
