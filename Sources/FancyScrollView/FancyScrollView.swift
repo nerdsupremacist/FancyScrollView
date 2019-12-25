@@ -8,9 +8,6 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
 
-    @Environment(\.presentationMode)
-    var presentationMode: Binding<PresentationMode>
-
     public var body: some View {
         if let header = header {
             return AnyView(
@@ -20,12 +17,6 @@ public struct FancyScrollView: View {
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  header: header,
                                  content: content)
-            )
-        } else if presentationMode.wrappedValue.isPresented {
-            return AnyView(
-                ScrollView { content }
-                    .navigationBarTitle(Text(title), displayMode: .large)
-                    .navigationBarHidden(false)
             )
         } else {
             return AnyView(
