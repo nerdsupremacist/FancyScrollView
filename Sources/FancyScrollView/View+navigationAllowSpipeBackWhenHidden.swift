@@ -28,6 +28,18 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
             return originalDelegate
         }
 
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            if let navigationController = navigationController,
+                navigationController.isNavigationBarHidden {
+
+                return true
+            } else if let result = originalDelegate?.gestureRecognizerShouldBegin?(gestureRecognizer) {
+                return result
+            } else {
+                return false
+            }
+        }
+
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
             if let navigationController = navigationController,
                 navigationController.isNavigationBarHidden {
