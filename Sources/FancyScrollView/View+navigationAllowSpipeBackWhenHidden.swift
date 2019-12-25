@@ -14,6 +14,10 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
         weak var navigationController: UINavigationController?
         weak var originalDelegate: UIGestureRecognizerDelegate?
 
+        deinit {
+            navigationController?.interactivePopGestureRecognizer?.delegate = originalDelegate
+        }
+
         override func responds(to aSelector: Selector!) -> Bool {
             if aSelector == #selector(gestureRecognizer(_:shouldReceive:)) {
                 return true
