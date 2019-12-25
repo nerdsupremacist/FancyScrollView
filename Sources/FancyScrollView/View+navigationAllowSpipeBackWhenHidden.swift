@@ -11,18 +11,34 @@ extension View {
 private struct NavigationConfigurator: UIViewControllerRepresentable {
 
     class Coordinator: NSObject, UIGestureRecognizerDelegate {
-        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-            return true
+        weak var navigationController: UINavigationController?
+        weak var originalDelegate: UIGestureRecognizerDelegate?
+
+        override func responds(to aSelector: Selector!) -> Bool {
+            if aSelector == #selector(gestureRecognizer(_:shouldReceive:)) {
+                return true
+            } else if let responds = originalDelegate?.responds(to: aSelector) {
+                return responds
+            } else {
+                return false
+            }
         }
 
-        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                               shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-
-            return true
+        override func forwardingTarget(for aSelector: Selector!) -> Any? {
+            return originalDelegate
         }
 
-        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-            return true
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+            if let navigationController = navigationController,
+                navigationController.isNavigationBarHidden,
+                navigationController.viewControllers.count > 1 {
+
+                return true
+            } else if let result = originalDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: touch) {
+                return result
+            } else {
+                return false
+            }
         }
     }
 
@@ -37,6 +53,9 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController,
                                 context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
 
+        guard uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate !== context.coordinator else { return }
+        context.coordinator.navigationController = uiViewController.navigationController
+        context.coordinator.navigationController = uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate
         uiViewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate = context.coordinator
     }
