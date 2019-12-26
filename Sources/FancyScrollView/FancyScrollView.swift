@@ -45,7 +45,7 @@ public struct FancyScrollView: View {
 extension FancyScrollView {
 
     public init<A: View, B: View>(title: String = "",
-                                  height: CGFloat = 300,
+                                  headerHeight: CGFloat = 300,
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
@@ -60,7 +60,7 @@ extension FancyScrollView {
     }
 
     public init<A: View>(title: String = "",
-                         height: CGFloat = 300,
+                         headerHeight: CGFloat = 300,
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          content: () -> A) {
