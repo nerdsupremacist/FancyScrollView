@@ -2,7 +2,7 @@
 
 ![](Demo/FancyScrollView.gif)
 
-I spent a lot of time looking for a way to recreate the UI of the ScrollViews in Stock Apple Apps (i.e. App Store and Apple Music).
+I spent a lot of time looking for a way to recreate the UI of the ScrollViews in Stock Apple Apps (i.e. App Store and Apple Music) inside of SwiftUI.
 
 And here is the result! I call it `FancyScrollView`.
 It's a ScrollView with a few extra perks:
