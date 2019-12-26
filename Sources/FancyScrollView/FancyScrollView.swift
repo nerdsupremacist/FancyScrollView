@@ -52,7 +52,7 @@ extension FancyScrollView {
                                   content: () -> B) {
 
         self.init(title: title,
-                  headerHeight: height,
+                  headerHeight: headerHeight,
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
@@ -66,7 +66,7 @@ extension FancyScrollView {
                          content: () -> A) {
 
            self.init(title: title,
-                     headerHeight: height,
+                     headerHeight: headerHeight,
                      scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
