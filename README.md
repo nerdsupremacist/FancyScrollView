@@ -1,5 +1,7 @@
 # FancyScrollView
 
+![](Demo/FancyScrollView.gif)
+
 I spent a lot of time looking for a way to recreate the UI of the ScrollViews in Stock Apple Apps (i.e. App Store and Apple Music).
 
 And here is the result! I call it `FancyScrollView`.
