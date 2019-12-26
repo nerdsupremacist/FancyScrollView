@@ -48,7 +48,7 @@ public enum ScrollDownHeaderBehavior {
 
 ### Let's see them in action!
 
-Here's every combination between scrol
+Here's every combination between scrolling behaviors
 
 #### Parallax + Offset (Default):
 
@@ -70,7 +70,7 @@ FancyScrollView(title: "The Weeknd",
 
 #### Parallax + Sticky:
 
-This combination is design to imitate the header from the Artist Detail View in Apple Music.
+This combination is designed to imitate the header from the Artist Detail View in Apple Music.
 
 ```swift
 FancyScrollView(title: "The Weeknd",
@@ -88,7 +88,7 @@ FancyScrollView(title: "The Weeknd",
 
 #### Sticky + Offset:
 
-This combination is design to imitate the header from the "Today" showcases in the App Store.
+This combination is designed to imitate the header from the "Today" showcases in the App Store.
 
 ```swift
 FancyScrollView(title: "The Weeknd",
