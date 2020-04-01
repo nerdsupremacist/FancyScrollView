@@ -11,8 +11,9 @@ struct AppleMusicStyleScrollView: View {
             ScrollView {
                 ZStack {
                     GeometryReader { geometry -> Text in
+                        let offset = geometry.frame(in: .global).minY
                         DispatchQueue.main.async {
-                            self.offset = geometry.frame(in: .global).minY
+                            self.offset = offset
                         }
                         return Text("")
                     }
