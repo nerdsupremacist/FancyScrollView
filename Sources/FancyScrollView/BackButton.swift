@@ -11,7 +11,7 @@ struct BackButton: View {
             Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
                 Image(systemName: "chevron.left")
                     .foregroundColor(color)
-            }
-            .padding(.horizontal, 16) : nil
+                    .padding(.horizontal, 16)
+            } : nil
     }
 }
