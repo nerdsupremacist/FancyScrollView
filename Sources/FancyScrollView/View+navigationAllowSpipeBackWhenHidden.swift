@@ -2,30 +2,19 @@ import SwiftUI
 
 extension View {
 
-    func hackNavigationToAllowSpipeBackWhenHidden() -> some View {
+    func hackNavigationToAllowSwipeBackWhenHidden() -> some View {
         return background(NavigationConfigurator())
     }
 
 }
 
 private struct NavigationConfigurator: UIViewControllerRepresentable {
-
     class Coordinator: NSObject, UIGestureRecognizerDelegate {
         weak var navigationController: UINavigationController?
         weak var originalDelegate: UIGestureRecognizerDelegate?
 
         deinit {
             navigationController?.interactivePopGestureRecognizer?.delegate = originalDelegate
-        }
-
-        override func responds(to aSelector: Selector!) -> Bool {
-            if aSelector == #selector(gestureRecognizer(_:shouldReceive:)) {
-                return true
-            } else if let responds = originalDelegate?.responds(to: aSelector) {
-                return responds
-            } else {
-                return false
-            }
         }
 
         override func forwardingTarget(for aSelector: Selector!) -> Any? {
@@ -35,7 +24,6 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
         func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
             if let navigationController = navigationController,
                 navigationController.isNavigationBarHidden {
-
                 return true
             } else if let result = originalDelegate?.gestureRecognizerShouldBegin?(gestureRecognizer) {
                 return result
@@ -47,9 +35,31 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
             if let navigationController = navigationController,
                 navigationController.isNavigationBarHidden {
-
                 return true
             } else if let result = originalDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: touch) {
+                return result
+            } else {
+                return false
+            }
+        }
+        
+        @available(iOS 13.4, *)
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
+            if let navigationController = navigationController,
+                navigationController.isNavigationBarHidden {
+                return true
+            } else if let result = originalDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: event) {
+                return result
+            } else {
+                return false
+            }
+        }
+        
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+            if let navigationController = navigationController,
+                navigationController.isNavigationBarHidden {
+                return true
+            } else if let result = originalDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: press) {
                 return result
             } else {
                 return false
@@ -70,10 +80,14 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
 
         uiViewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
-        guard !(uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate is Coordinator) else { return }
+        guard
+            let originalDelegate = uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate,
+            !(originalDelegate is Coordinator)
+        else {
+            return
+        }
         context.coordinator.navigationController = uiViewController.navigationController
-        context.coordinator.originalDelegate = uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate
+        context.coordinator.originalDelegate = originalDelegate
         uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate = context.coordinator
     }
-
 }
