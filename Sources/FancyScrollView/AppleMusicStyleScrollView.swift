@@ -17,8 +17,8 @@ struct AppleMusicStyleScrollView: View {
                         }
                         return Text("")
                     }
+                    
                     content
-                        .animation(nil)
                 }
             }
             GeometryReader { geometry in
