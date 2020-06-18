@@ -15,7 +15,7 @@ struct BackButton: View {
                     .frame(height: 20, alignment: .leading)
                     .foregroundColor(color)
                     .padding(.horizontal, 16)
-                    .background(Rectangle().opacity(0.0))
+                    // .background(Rectangle().opacity(0.0))
                     .font(Font.body.bold())
             } : nil
     }
