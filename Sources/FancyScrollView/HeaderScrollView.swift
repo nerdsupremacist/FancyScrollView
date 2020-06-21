@@ -69,6 +69,7 @@ struct HeaderScrollView: View {
         }
         .navigationBarTitle(Text(""), displayMode: .inline)
         .navigationBarHidden(true)
+        .hackNavigationToAllowSwipeBackWhenHidden()
     }
 }
 
