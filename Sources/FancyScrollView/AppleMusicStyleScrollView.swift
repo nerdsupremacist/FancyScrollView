@@ -31,8 +31,7 @@ struct AppleMusicStyleScrollView: View {
                     .animation(.spring())
             }
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+        .hideNavigationBarWithoutLosingSwipeBack(true)
     }
 }
 

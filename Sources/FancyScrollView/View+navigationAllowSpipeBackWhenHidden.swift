@@ -68,7 +68,10 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
-        return UIViewController()
+        let controller = UIViewController()
+        controller.title = "Some title"
+//        controller.navigationItem.
+        return controller
     }
 
     func makeCoordinator() -> NavigationConfigurator.Coordinator {
