@@ -20,6 +20,7 @@ struct HeaderScrollViewTitle: View {
             }
             .padding(.bottom, 8)
             .opacity(sqrt(largeTitleOpacity))
+            .minimumScaleFactor(0.5)
 
             ZStack {
                 HStack {
