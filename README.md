@@ -59,7 +59,7 @@ FancyScrollView(title: "The Weeknd",
                 headerHeight: 350,
                 scrollUpHeaderBehavior: .parallax,
                 scrollDownHeaderBehavior: .offset,
-                header: { Image(...).resizable().aspectRatio(.fill) }) {
+                header: { Image(...).resizable().aspectRatio(contentMode: .fill) }) {
 	...
 }
 ```
@@ -77,7 +77,7 @@ FancyScrollView(title: "The Weeknd",
                 headerHeight: 350,
                 scrollUpHeaderBehavior: .parallax,
                 scrollDownHeaderBehavior: .sticky,
-                header: { Image(...).resizable().aspectRatio(.fill) }) {
+                header: { Image(...).resizable().aspectRatio(contentMode: .fill) }) {
 	...
 }
 ```
@@ -95,7 +95,7 @@ FancyScrollView(title: "The Weeknd",
                 headerHeight: 350,
                 scrollUpHeaderBehavior: .sticky,
                 scrollDownHeaderBehavior: .offset,
-                header: { Image(...).resizable().aspectRatio(.fill) }) {
+                header: { Image(...).resizable().aspectRatio(contentMode: .fill) }) {
 	...
 }
 ```
@@ -113,7 +113,7 @@ FancyScrollView(title: "The Weeknd",
                 headerHeight: 350,
                 scrollUpHeaderBehavior: .sticky,
                 scrollDownHeaderBehavior: .sticky,
-                header: { Image(...).resizable().aspectRatio(.fill) }) {
+                header: { Image(...).resizable().aspectRatio(contentMode: .fill) }) {
 	...
 }
 ```
