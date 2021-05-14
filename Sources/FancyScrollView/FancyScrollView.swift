@@ -2,6 +2,7 @@ import SwiftUI
 
 public struct FancyScrollView: View {
     let title: String
+    let titleColor: Color
     let headerHeight: CGFloat
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
@@ -11,7 +12,7 @@ public struct FancyScrollView: View {
     public var body: some View {
         if let header = header {
             return AnyView(
-                HeaderScrollView(title: title,
+                HeaderScrollView(title: title, titleColor: titleColor,
                                  headerHeight: headerHeight,
                                  scrollUpBehavior: scrollUpHeaderBehavior,
                                  scrollDownBehavior: scrollDownHeaderBehavior,
@@ -44,14 +45,14 @@ public struct FancyScrollView: View {
 
 extension FancyScrollView {
 
-    public init<A: View, B: View>(title: String = "",
+    public init<A: View, B: View>(title: String = "", titleColor: Color = Color.white,
                                   headerHeight: CGFloat = 300,
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
                                   content: () -> B) {
 
-        self.init(title: title,
+        self.init(title: title, titleColor: titleColor,
                   headerHeight: headerHeight,
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
@@ -59,13 +60,13 @@ extension FancyScrollView {
                   content: AnyView(content()))
     }
 
-    public init<A: View>(title: String = "",
+    public init<A: View>(title: String = "", titleColor: Color = Color.white,
                          headerHeight: CGFloat = 300,
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          content: () -> A) {
 
-           self.init(title: title,
+           self.init(title: title, titleColor: titleColor,
                      headerHeight: headerHeight,
                      scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
