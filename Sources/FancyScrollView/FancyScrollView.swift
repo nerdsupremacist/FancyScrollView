@@ -29,6 +29,7 @@ public struct FancyScrollView: View {
                                 .foregroundColor(.white)
                                 .fontWeight(.black)
                                 .padding(.horizontal, 16)
+                                .fixedSize(horizontal: false, vertical: true)
 
                             Spacer()
                         } : nil
