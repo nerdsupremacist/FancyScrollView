@@ -7,6 +7,7 @@ struct HeaderScrollView: View {
     private var colorScheme: ColorScheme
 
     let title: String
+    let titleColor: Color
     let headerHeight: CGFloat
     let scrollUpBehavior: ScrollUpHeaderBehavior
     let scrollDownBehavior: ScrollDownHeaderBehavior
@@ -45,7 +46,7 @@ struct HeaderScrollView: View {
 
                                     Spacer()
 
-                                    HeaderScrollViewTitle(title: self.title,
+                                    HeaderScrollViewTitle(title: self.title, titleColor: self.titleColor,
                                                           height: navigationBarHeight,
                                                           largeTitle: geometry.largeTitleWeight).layoutPriority(1000)
                                 }
